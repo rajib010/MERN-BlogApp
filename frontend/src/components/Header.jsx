@@ -1,18 +1,32 @@
-import React from 'react'
-import { images } from "../constants"
+import React from 'react';
+import { images } from "../constants";
 
 
 const navItemsInfo = [
-  { name: "Home" },
-  { name: "Articles" },
-  { name: "Pages" },
-  { name: "Pricing" },
-  { name: "Faq" }
+  { name: "Home", type: "link" },
+  { name: "Articles", type: "link" },
+  { name: "Pages", type: "dropdown", items: ["About Us", "Contact Us"] },
+  { name: "Pricing", type: "link" },
+  { name: "Faq", type: "link" }
 ]
 
-const NavItem = ({ name }) => {
+const NavItem = ({ item }) => {
   return (
-    <li><a>{name}</a></li>
+    <li>
+      {item.type === "link" ? (<a>{item.name}</a>) :
+        (<>
+          <li>
+            <a>{item.name}</a>
+            <ul className="p-2">
+              {item.items.map((pages) => (
+                <li key={pages}>
+                  <a>{pages}</a>
+                </li>
+              ))}
+            </ul>
+          </li>
+        </>)}
+    </li>
   )
 }
 
@@ -25,9 +39,9 @@ const Header = () => {
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
           </div>
           <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 ">
-            {navItemsInfo.map((items) =>
+            {navItemsInfo.map((item) =>
             (
-              <NavItem key={items.name} name={items.name} />
+              <NavItem key={item.name} item={item} />
             )
             )}
           </ul>
@@ -39,7 +53,7 @@ const Header = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1 text-2xl text-slate-300 ">
           {navItemsInfo.map((item) => (
-            <NavItem key={item.name} name={item.name} />
+            <NavItem key={item.name} item={item} />
           ))}
 
         </ul>
