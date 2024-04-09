@@ -5,12 +5,7 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {
-      fontFamily:{
-        opensans:["Open Sans","sans-serif"],
-        roboto:["Roboto", "sans-serif"]
-      }
-    },
+    extend: {},
   },
-  plugins: [require("daisyui")],
+  plugins: [],
 }

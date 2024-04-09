@@ -1,9 +1,7 @@
-import HomePage from "./pages/HomePage.jsx"
-
 export default function App() {
   return (
-    <div className="App font-opensans">
-      <HomePage />
-    </div>
+    <h1 className="text-3xl font-bold">
+      Hello world!
+    </h1>
   )
 }
