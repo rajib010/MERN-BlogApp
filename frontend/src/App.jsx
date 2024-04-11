@@ -3,8 +3,6 @@ import {Navigate, Route, Routes} from 'react-router-dom'
 import {Home, Signup, Login} from "./pages/index.pages.js"
 
 
-
-
 const App = () => {
   return (
     <div>
