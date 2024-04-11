@@ -10,7 +10,7 @@ function Header() {
             {/* logo */}
             <div className="flex-1">
                 <Link to="/">
-                    <img src={image.myLogo} className='w-[6vw] h-auto p-1' alt=" his img" />
+                    <img src={image.myLogo} className='w-[6vw] h-auto p-1   ' alt=" his img" />
                 </Link>
             </div>
 
@@ -21,6 +21,7 @@ function Header() {
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="/about">About Us</Link></li>
                 <li><Link to="/contact">Contact</Link></li>
+                <li><Link to="/projects">Projects</Link></li>
             </ul>
 
 
