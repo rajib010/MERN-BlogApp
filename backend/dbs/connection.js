@@ -1,8 +1,11 @@
 import mongoose from "mongoose"
 
+const dbUrl = process.env.DB_URL
+const dbName = process.env.DB_NAME
+
 const connection = async function(){
     try {
-        await mongoose.connect(`mongodb://127.0.0.1:27017/blogApp`);
+        await mongoose.connect(`${dbUrl}/${dbName}`);
         console.log("Db connection was successfull");    
     } catch (error) {
         console.log("error in db connection", error);

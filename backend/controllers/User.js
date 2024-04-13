@@ -5,7 +5,6 @@ import { uploadOnCloudinary } from "../utility/cloudinary.js"
 
 const signup = asyncHandler(async (req, res) => {
     const { fullName, email, userName, password } = req.body;
-    console.log(email);
     if ([fullName, email, userName, password].some((field) =>
         field?.trim() === "")) {
         throw new ApiError(400, "All the fields must be filled")
@@ -36,7 +35,7 @@ const signup = asyncHandler(async (req, res) => {
 
     if (newUser) {
         generateTokensAndSetCookie(newUser?._id, res)
-        const createdUser = await User.findById(newUser?._id).select("-password"); 
+        const createdUser = await User.findById(newUser?._id).select("-password");
         return res.status(201).json(
             new ApiResponse(201, createdUser, "User registered successfully")
         )
@@ -45,4 +44,4 @@ const signup = asyncHandler(async (req, res) => {
 
 
 
-export {signup}
+export { signup }
