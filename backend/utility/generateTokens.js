@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken"
-import { asyncHandler, ApiResponse, ApiError } from "./index"
+import { asyncHandler, ApiResponse, ApiError } from "./index.js"
 
 const generateTokensAndSetCookie = asyncHandler(async (userId, res) => {
     const token = jwt.sign({ userId }, process.env.JWT_SECRET_KEY, {
@@ -14,4 +14,4 @@ const generateTokensAndSetCookie = asyncHandler(async (userId, res) => {
     })
 })
 
-export default generateTokensAndSetCookie
+export default generateTokensAndSetCookie;
