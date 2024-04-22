@@ -34,13 +34,19 @@ const signup = asyncHandler(async (req, res) => {
     })
 
     if (newUser) {
-        generateTokensAndSetCookie(newUser?._id, res)
-        const createdUser = await User.findById(newUser?._id).select("-password");
-        return res.status(201).json(
-            new ApiResponse(201, createdUser, "User registered successfully")
-        )
+        generateTokensAndSetCookie(newUser?._id, res);
+        return res.status(201).json(new ApiResponse(201, {
+            _id: newUser._id,
+            fullName: newUser.fullName,
+            email: newUser.email,
+            userName: newUser.userName,
+            avatar: newUser.avatar
+        },
+            "user created successfully"
+        ))
     }
 })
+
 
 
 
