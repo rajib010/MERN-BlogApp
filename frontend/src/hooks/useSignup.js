@@ -1,25 +1,33 @@
 import { useState } from "react";
 import { toast } from "react-hot-toast";
-import { useAuthContext } from "../context/AuthContext.js";
+import { useAuthContext } from "../context/AuthContext.jsx";
 
 const useSignUp = () => {
     const [loading, setLoading] = useState(false);
 
     //from context
     const { setAuthUser } = useAuthContext();
+
     const signup = async ({ fullName, userName, email, password, confirmPassword, avatar }) => {
         const success = handleInputErrors({ fullName, userName, email, password, confirmPassword, avatar });
         if (!success) return;
         setLoading(true);
         try {
+            const formData = new FormData();
+            formData.append("fullName", fullName);
+            formData.append("userName", userName);
+            formData.append("email", email);
+            formData.append("password", password);
+            formData.append("confirmPassword", confirmPassword);
+            formData.append("avatar", avatar);
+
             const res = await fetch("/api/user/signup", {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ fullName, userName, email, password, confirmPassword, avatar })
+                body: formData,
             });
             const data = await res.json();
             if (data.error) {
-                throw new Error(data.error)
+                throw new Error(data.error);
             }
             localStorage.setItem("blog-user", JSON.stringify(data));
 
@@ -27,25 +35,24 @@ const useSignUp = () => {
             setAuthUser(data);
             console.log(data);
         } catch (e) {
-            toast.error(e.message)
-        }finally{
-            setLoading(false)
+            toast.error(e.message);
+        } finally {
+            setLoading(false);
         }
     };
 
-    return {loading, signup}
-}
+    return { loading, signup };
+};
 
-
-export default useSignUp
+export default useSignUp;
 
 function handleInputErrors({ fullName, userName, email, password, confirmPassword, avatar }) {
     if (!fullName || !userName || !email || !password || !confirmPassword || !avatar) {
-        toast.error("Please fill in all the feilds");
+        toast.error("Please fill in all the fields");
         return false;
     }
     if (password !== confirmPassword) {
-        toast.error("Passwords donot match");
+        toast.error("Passwords do not match");
         return false;
     }
     if (password.length < 5) {

@@ -17,7 +17,7 @@ const signup = asyncHandler(async (req, res) => {
     if (existedUser) {
         throw new ApiError(409, "User or email already exists")
     }
-    const avatarLocalPath = req.files?.avatar[0]?.path;
+    const avatarLocalPath = req.files?.avatar[0]?.path; 
     if (!avatarLocalPath) {
         throw new ApiError(400, "Avatar file is required")
     }
@@ -46,8 +46,6 @@ const signup = asyncHandler(async (req, res) => {
         ))
     }
 })
-
-
 
 
 export { signup }
