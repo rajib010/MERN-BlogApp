@@ -1,11 +1,11 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import useSignUp from '../../hooks/useSignup.js'
-
+import { FaEyeSlash, FaEye } from "react-icons/fa";
 
 const Signup = () => {
 
-  const initialInputs= {
+  const initialInputs = {
     fullName: "",
     userName: "",
     email: "",
@@ -13,8 +13,8 @@ const Signup = () => {
     confirmPassword: "",
     avatar: null
   }
-  const[inputs, setInputs] = useState(initialInputs);
-
+  const [inputs, setInputs] = useState(initialInputs);
+  const [showPassword, setShowPassword] = useState(false) //state to control password visibility
   const { loading, signup } = useSignUp();
 
   const handleSubmit = async (e) => {
@@ -25,10 +25,9 @@ const Signup = () => {
   }
 
   //separate function to handle the file upload
-  const handleFileChange = async (e) =>{
-    setInputs({...inputs, avatar:e.target.files[0]});
+  const handleFileChange = async (e) => {
+    setInputs({ ...inputs, avatar: e.target.files[0] });
   }
-
 
   return (
     <div className='flex justify-center items-center min-h-32'>
@@ -67,14 +66,24 @@ const Signup = () => {
             <label className='label p-2'>
               <span className="text-base label-text">Password: </span>
             </label>
-            <input type="password" placeholder='Enter Password' className='w-full input input-bordered h-10' value={inputs.password} onChange={(e) => setInputs({ ...inputs, password: e.target.value })} autoComplete='new-password' />
+            <div className="relative">
+              <input type={showPassword ? "text" : "password"} placeholder='*******' className='w-full input input-bordered h-10' value={inputs.password} onChange={(e) => setInputs({ ...inputs, password: e.target.value })} autoComplete='new-password' />
+              <button type="button" className='absolute inset-y-0 right-0 px-3 flex items-center focus:outline-none' onClick={() => setShowPassword(!showPassword)}>
+                {showPassword ? <FaEyeSlash className='h-6 w-6 text-gray-300' /> : <FaEye className='h-6 w-6 text-gray-300' />}
+              </button>
+            </div>
           </div>
 
           <div>
             <label className='label p-2'>
-              <span className="text-base label-text"> Confirm Password: </span>
+              <span className="text-base label-text">Confirm Password: </span>
             </label>
-            <input type="password" placeholder='Confirm Password' className='w-full input input-bordered h-10' value={inputs.confirmPassword} onChange={(e) => setInputs({ ...inputs, confirmPassword: e.target.value })} autoComplete='new-password' />
+            <div className="relative">
+              <input type={showPassword ? "text" : "password"} placeholder='*******' className='w-full input input-bordered h-10' value={inputs.confirmPassword} onChange={(e) => setInputs({ ...inputs, confirmPassword: e.target.value })} autoComplete='new-password' />
+              <button type="button" className='absolute inset-y-0 right-0 px-3 flex items-center focus:outline-none' onClick={() => setShowPassword(!showPassword)}>
+                {showPassword ? <FaEyeSlash className='h-6 w-6 text-gray-300' /> : <FaEye className='h-6 w-6 text-gray-300' />}
+              </button>
+            </div>
           </div>
 
           <div>
@@ -98,6 +107,3 @@ const Signup = () => {
 }
 
 export default Signup
-
-
-
