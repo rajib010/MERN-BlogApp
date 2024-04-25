@@ -14,7 +14,6 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await login(userName, password);
-    alert("login successfull")
   }
 
   return (

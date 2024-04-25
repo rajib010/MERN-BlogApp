@@ -50,7 +50,7 @@ const signup = asyncHandler(async (req, res) => {
 
 const login = asyncHandler(async (req, res) => {
     const { userName, password } = req.body;
-    // console.log(userName); showing undefined 
+    console.log(req.body); //showing undefined 
     // username cannot be fetched from req.body
     const user = await User.findOne({ userName });
     if (!user) {
@@ -70,7 +70,5 @@ const login = asyncHandler(async (req, res) => {
     },
         "User login successful"))
 })
-
-
 
 export { signup, login }

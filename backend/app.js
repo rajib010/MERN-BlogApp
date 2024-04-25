@@ -1,6 +1,8 @@
 import cors from "cors"
 import express from "express"
 import cookieParser from "cookie-parser"
+import bodyParser from "body-parser";
+
 
 const app = express();
 
@@ -9,9 +11,8 @@ app.use(cors({
     credentials:true
 }))
 
-app.use(express.json({
-    limit:"16kb"
-})) // to parse the incomming requests with JSON payloads
+
+app.use(express.json());
 
 app.use(express.urlencoded({
     extended:true,
