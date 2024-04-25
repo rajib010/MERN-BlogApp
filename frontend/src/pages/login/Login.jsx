@@ -29,7 +29,7 @@ function Login() {
               <span className="text-base label-text">User Name: </span>
             </label>
             <input type="text" placeholder='John Doe' className='w-full input input-bordered h-10'
-              value={userName} onChange={(e) => setUserName(e.target.value)} />
+              value={userName} onChange={(e) => setUserName(e.target.value)} autoComplete='username'/>
           </div>
 
           <div>

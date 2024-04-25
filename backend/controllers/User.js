@@ -50,8 +50,7 @@ const signup = asyncHandler(async (req, res) => {
 
 const login = asyncHandler(async (req, res) => {
     const { userName, password } = req.body;
-    console.log(req.body); //showing undefined 
-    // username cannot be fetched from req.body
+    // console.log(req.body);
     const user = await User.findOne({ userName });
     if (!user) {
         throw new ApiError(404, "User does not exist")
@@ -71,4 +70,10 @@ const login = asyncHandler(async (req, res) => {
         "User login successful"))
 })
 
-export { signup, login }
+
+const logout = asyncHandler(async (req, res) => {
+    res.cookie("jwtToken", "", { maxAge: 0 })
+    return res.status(200).json(new ApiResponse(200, {}, "User logged out successfully"))
+})
+
+export { signup, login, logout }

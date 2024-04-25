@@ -1,9 +1,18 @@
 import React from 'react'
 import { Link } from "react-router-dom"
 import { image } from '../../constants'
+import useLogout from "../../hooks/useLogout.js"
 
 
 function Header() {
+
+    const { loading, logout } = useLogout();
+
+    const handleLogOut = (e)=>{
+        e.preventDefault();
+        logout();
+    }
+
     return (
         <div className="navbar bg-base-100 ">
 
@@ -48,7 +57,9 @@ function Header() {
                             </a>
                         </li>
                         <li><a>Settings</a></li>
-                        <li><a>Logout</a></li>
+                        <li>
+                                <button onClick={handleLogOut}>Logout</button>
+                        </li>
                     </ul>
                 </div>
             </div>
