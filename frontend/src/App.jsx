@@ -10,7 +10,7 @@ const App = () => {
   const { authUser } = useAuthContext()
 
   return (
-    <div className='container mx-auto'>
+    <div className='container mx-auto my-2 bg-white'>
       <Routes>
         <Route path='/' element={authUser ? <Home /> : <Navigate to={'/login'} />} />
         <Route path='/about' element={<About />} />

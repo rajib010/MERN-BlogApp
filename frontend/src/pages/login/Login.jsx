@@ -19,7 +19,7 @@ function Login() {
   return (
     <div className='flex justify-center items-center h-screen'>
       <div className=' w-[70vw] mx-auto p-8 border rounded-3xl flex flex-col gap-5 shadow-2xl bg-base-200'>
-        <h1 className='text-2xl md:text-4xl font-bold text-white text-center mb-10'>Log In </h1>
+        <h1 className='text-2xl md:text-4xl font-bold text-white text-center mb-1'>Log In </h1>
 
         {/* inputs for username and passwords */}
 
@@ -45,9 +45,9 @@ function Login() {
             </div>
           </div>
 
-          <Link to="/signup" className='w-full md:w-[13vw] mx-3 mt-1 hover:text-blue-600'>Don't have an account?</Link>
+          <Link to="/signup" className='text-sm hover:underline hover:text-blue-600 mt-2 '>Don't have an account?</Link>
           <div>
-            <button className='btn btn-block btn-sm mt-2' disabled={loading}>
+            <button className='btn mt-2 w-full hover:bg-green-800 text-white text-xl font-thin bg-blue-800 ' disabled={loading}>
               {loading ? <span className='loading loading-spinner'></span> : "Login"}
             </button>
           </div>

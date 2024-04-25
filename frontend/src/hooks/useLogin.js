@@ -21,9 +21,11 @@ const useLogin = () => {
             })
 
             const data = await res.json();
-            if (data.error) throw new Error(data.error);
+            if (data.error) {
+                throw new Error(data.error)
+            };
             localStorage.setItem("blog-user", JSON.stringify(data));
-            setAuthUser(data)
+            setAuthUser(data)   
         } catch (error) {
             toast.error("Invalid credentials")
         } finally {

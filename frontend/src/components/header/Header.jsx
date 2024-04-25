@@ -14,7 +14,7 @@ function Header() {
     }
 
     return (
-        <div className="navbar bg-base-100 ">
+        <div className="navbar bg-base-200 ">
 
             {/* logo */}
             <div className="flex-1">

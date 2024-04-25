@@ -30,8 +30,8 @@ const Signup = () => {
   }
 
   return (
-    <div className='flex justify-center items-center min-h-32'>
-      <div className=' w-[70vw] mx-auto p-8 border rounded-3xl flex flex-col gap-5 shadow-2xl bg-base-200'>
+    <div className='flex justify-center items-center w-[50vw] h-[100vh] mx-auto'>
+      <div className=' w-[70vw] mx-auto py-2 px-10 border rounded-3xl flex flex-col gap-5 shadow-2xl bg-base-200'>
         <h1 className="text-3xl font-semibold text-center text-gray-300">
           SignUp <span className='text-blue-500'>Blog App</span>
         </h1>
@@ -96,7 +96,7 @@ const Signup = () => {
           <Link to="/login" className='text-sm hover:underline hover:text-blue-600 mt-2 inline-block'>Already have an account?</Link>
 
           <div>
-            <button className="btn mt-2 hover:bg-green-800 text-white text-xl font-thin bg-blue-800 " disabled={loading}>
+            <button className="btn mt-2 w-full hover:bg-green-800 text-white text-xl font-thin bg-blue-800 " disabled={loading}>
               {loading ? <span className='loading loading-spinner'></span> : "Sign up"}
             </button>
           </div>
