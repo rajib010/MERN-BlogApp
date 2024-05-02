@@ -2,9 +2,12 @@ import React from 'react'
 import { Link } from "react-router-dom"
 import { image } from '../../constants'
 import useLogout from "../../hooks/useLogout.js"
+import { useAuthContext } from '../../context/AuthContext.jsx'
 
 
 function Header() {
+
+    const {authUser} = useAuthContext();
 
     const { loading, logout } = useLogout();
 
@@ -28,9 +31,9 @@ function Header() {
 
             <ul className="menu menu-horizontal px-1 text-xl">
                 <li><Link to="/">Home</Link></li>
+                <li><Link to="/add-blogs">Add Blogs</Link></li>
                 <li><Link to="/about">About Us</Link></li>
                 <li><Link to="/contact">Contact</Link></li>
-                <li><Link to="/projects">Projects</Link></li>
             </ul>
 
 
@@ -44,7 +47,7 @@ function Header() {
                 <div className="dropdown dropdown-end">
                     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                         <div className="w-10 rounded-full">
-                            <img alt="Tailwind CSS Navbar component" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                            <img alt="Tailwind CSS Navbar component" src={authUser.data.avatar} />
                         </div>
                     </div>
 
@@ -52,8 +55,8 @@ function Header() {
                     <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
                         <li>
                             <a className="justify-between">
-                                Profile
-                                <span className="badge">New</span>
+                            
+                                <span className='text-xl text-white'>{authUser.data.userName}!</span> 
                             </a>
                         </li>
                         <li><a>Settings</a></li>

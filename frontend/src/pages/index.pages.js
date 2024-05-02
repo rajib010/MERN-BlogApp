@@ -1,10 +1,10 @@
 import Home from "./home/Home"
 import Login from "./login/Login"
 import Signup from "./signup/Signup"
-import About from "./about/About"
+import Insert from "./insert/Insert"
 import Contact from "./contact/Contact"
-import Projects from "./projects/Projects"
+import About from "./about/About"
 
 
 
-export {Home, Login, Signup, About, Contact, Projects}
+export {Home, Login, Signup, Insert, Contact, About}

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { Home, Signup, Login, About, Contact, Projects } from "./pages/index.pages.js";
+import { Home, Signup, Login, Insert, Contact, About } from "./pages/index.pages.js";
 import { AuthContextProvider, useAuthContext } from './context/AuthContext.jsx';
 import Footer from './components/footer/footer.jsx'
 import Header from './components/header/Header.jsx'
@@ -29,8 +29,9 @@ function AppRoutes() {
           authUser ? <Home /> : <Navigate to="/login" />
         }
       />
-      <Route path="about" element={authUser ? <About /> : <Navigate to="/login" />} />
+      <Route path="add-blogs" element={authUser ? <Insert /> : <Navigate to="/login" />} />
       <Route path="contact" element={authUser ? <Contact /> : <Navigate to="/login" />} />
+      <Route path="about" element={authUser ? <About /> : <Navigate to="/login" />} />
       <Route path="login" element={authUser ? <Navigate to="/" /> : <Login />} />
       <Route path="signup" element={authUser ? <Navigate to="/" /> : <Signup />} />
     </Routes>
