@@ -4,7 +4,7 @@ import { asyncHandler, ApiError, ApiResponse, uploadOnCloudinary } from "../util
 
 const createBlog = asyncHandler(async (req, res) => {
     const { heading, description } = req.body;
-    if(!req.user || !isValidObjectId(req.user?._id)) throw new ApiError(404,"Invalid request");
+    if(!req.user || !isValidObjectId(req.user?._id)) throw new ApiError(404,"Unauthorized request");
     if (!(heading && description)) {
         throw new ApiError(404, "Fields cannot be empty")
     }
@@ -16,6 +16,8 @@ const createBlog = asyncHandler(async (req, res) => {
     if (!image) {
         throw new ApiError(404, "image file is missing")
     }
+
+    //here req.user is not defined
     const newBlog = await Blog.create({
         author: req.user?._id,
         heading,
