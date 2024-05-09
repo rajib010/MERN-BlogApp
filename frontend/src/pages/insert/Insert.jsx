@@ -14,20 +14,18 @@ function Insert() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if(!inputs.heading || !inputs.description || !inputs.image){
-      alert ("Please fill in all the fields");
+    if (!inputs.heading || !inputs.description || !inputs.image) {
+      alert("Please fill in all the fields");
       return;
     }
-    await createBlogs(inputs);// run hook
-    setInputs(initialInputs); //reset
-    alert("Blog created successfully")
+    await createBlogs(inputs);
+    setInputs(initialInputs);
+    alert("Blog created successfully");
   }
 
-  //separate function to handle the file upload
   const handleFileChange = async (e) => {
     setInputs({ ...inputs, image: e.target.files[0] });
   }
-
 
   return (
     <div className='flex flex-col w-[50vw] mx-auto p-4 gap-5'>
@@ -48,8 +46,8 @@ function Insert() {
         <input type="file" className="file-input file-input-bordered w-full max-w-xs" onChange={handleFileChange} />
 
         <div>
-        <button className="btn max-w-sm text-white text-xl font-thin bg-blue-800 " disabled={loading}>
-              {loading ? <span className='loading loading-spinner'></span> : "Post"}
+          <button type="submit" className="btn max-w-sm text-white text-xl font-thin bg-blue-800 " disabled={loading}>
+            {loading ? <span className='loading loading-spinner'></span> : "Post"}
           </button>
         </div>
 
