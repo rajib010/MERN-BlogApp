@@ -59,7 +59,7 @@ const login = asyncHandler(async (req, res) => {
     if (!isValidPassword) {
         throw new ApiError(401, "Invalid password")
     }
-    await generateTokensAndSetCookie(user._id, res);
+    generateTokensAndSetCookie(user._id, res);
 
     return res.status(200).json(new ApiResponse(200, {
         _id: user._id,
@@ -72,7 +72,7 @@ const login = asyncHandler(async (req, res) => {
 
 
 const logout = asyncHandler(async (req, res) => {
-    res.cookie("jwtToken", "", { maxAge: 0 })
+    await res.cookie("jwtToken", "", { maxAge: 0 })
     return res.status(200).json(new ApiResponse(200, {}, "User logged out successfully"))
 })
 
