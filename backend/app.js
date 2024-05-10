@@ -8,15 +8,15 @@ const app = express();
 
 app.use(cors({
     origin: process.env.CORS_ORIGIN,
-    credentials:true
+    credentials: true
 }))
 
 
 app.use(express.json());
 
 app.use(express.urlencoded({
-    extended:true,
-    limit:"16kb"
+    extended: true,
+    limit: "16kb"
 }))
 
 
@@ -27,9 +27,11 @@ app.use(cookieParser())
 //import the routers
 import userRouter from "./routes/User.js";
 import blogRouter from "./routes/Blog.js";
+import { getBlogs } from "./controllers/Blogs.js";
 
-app.use("/api/user",userRouter)
+app.use("/api/user", userRouter)
 app.use("/api/blog", blogRouter)
+app.route("/").get(getBlogs)
 
 
 export default app;

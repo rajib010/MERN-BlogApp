@@ -4,7 +4,7 @@ import { asyncHandler, ApiError, ApiResponse, uploadOnCloudinary } from "../util
 
 const createBlog = asyncHandler(async (req, res) => {
     const { heading, description } = req.body;
-    if(!req.user || !isValidObjectId(req.user?._id)) throw new ApiError(404,"Unauthorized request");
+    if (!req.user || !isValidObjectId(req.user?._id)) throw new ApiError(404, "Unauthorized request");
     const author = req.user._id;
     if (!(heading && description)) {
         throw new ApiError(404, "Fields cannot be empty")
@@ -26,7 +26,6 @@ const createBlog = asyncHandler(async (req, res) => {
         image: image.url
     })
 
-    console.log(author);
     if (!newBlog) {
         throw new ApiError(500, "Cannot post newBlog. Try again later.")
     }
@@ -34,4 +33,13 @@ const createBlog = asyncHandler(async (req, res) => {
 
 })
 
-export { createBlog }
+
+const getBlogs = asyncHandler(async (req, res) => {
+    const blogs = await Blog.find();
+    if (!blogs) {
+        throw new ApiError(400, "No blogs found. Create some.")
+    }
+    return res.status(200).json(new ApiResponse(200, blogs, "Blogs fetched successfully"))
+})
+
+export { createBlog, getBlogs}
