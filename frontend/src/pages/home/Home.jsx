@@ -11,7 +11,9 @@ function Home() {
 
   },[])
   return (
-    <div>
+    <div className='content-row flex flex-wrap justify-center'>
+      <Content />
+      <Content />
       <Content />
     </div>
   )

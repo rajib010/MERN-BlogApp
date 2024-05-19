@@ -18,6 +18,7 @@ const useGetBlogs = () => {
                 throw new Error(data.error)
             }
             console.log(data);
+            setBlogs(data);
         } catch (error) {
             toast.error(error);
         } finally {

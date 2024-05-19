@@ -26,6 +26,7 @@ export const useCreateBlogs = () => {
                 throw new Error(data.error)
             }
             console.log(data);
+            
         } catch (error) {
             toast.error(error.message)
         } finally {
