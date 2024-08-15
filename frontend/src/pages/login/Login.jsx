@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { FaEyeSlash, FaEye } from "react-icons/fa";
 import useLogin from "../../hooks/useLogin.js"
+import GoogleSignInButton from './GoogleSignIn.jsx';
 
 
 function Login() {
@@ -29,7 +30,7 @@ function Login() {
               <span className="text-base label-text">User Name: </span>
             </label>
             <input type="text" placeholder='John Doe' className='w-full input input-bordered h-10'
-              value={userName} onChange={(e) => setUserName(e.target.value)} autoComplete='username'/>
+              value={userName} onChange={(e) => setUserName(e.target.value)} autoComplete='username' />
           </div>
 
           <div>
@@ -50,6 +51,10 @@ function Login() {
             <button className='btn mt-2 w-full hover:bg-green-800 text-white text-xl font-thin bg-blue-800 ' disabled={loading}>
               {loading ? <span className='loading loading-spinner'></span> : "Login"}
             </button>
+          </div>
+          <div>
+            <p className='text-center my-2'>Or</p>
+            <GoogleSignInButton />
           </div>
         </form>
       </div>
