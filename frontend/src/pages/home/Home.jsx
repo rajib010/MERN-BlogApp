@@ -6,7 +6,7 @@ import Content from '../../components/content/Content.jsx'
 
 function Home() {
 
-  const {getBlogs, loading} = useGetBlogs()
+  const {getBlogs, loading} = useGetBlogs();
   useEffect(()=>{
 
   },[])

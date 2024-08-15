@@ -1,4 +1,4 @@
-import { createContext, useState, useContext } from "react";
+import { createContext, useState, useContext, useEffect } from "react";
 
 
 export const AuthContext = createContext();
@@ -9,9 +9,21 @@ export const useAuthContext = () => {
 
 export const AuthContextProvider = ({ children }) => {
 
-    const [authUser, setAuthUser] = useState(JSON.parse(localStorage.getItem("blog-user")) || null)
+    const [authUser, setAuthUser] = useState(null)
 
-    return <AuthContext.Provider value={{ authUser, setAuthUser }}>
+    useEffect(() => {
+        const loggedUser = localStorage.getItem("blog-user")
+        if (loggedUser) {
+            setAuthUser(JSON.parse(loggedUser))
+        }
+    }, [])
+
+    const logout = () => {
+        setAuthUser(null);
+        localStorage.removeItem('blog-user')
+    }
+
+    return <AuthContext.Provider value={{ authUser, setAuthUser, logout }}>
         {children}
     </AuthContext.Provider>
 }
