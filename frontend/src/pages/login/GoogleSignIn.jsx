@@ -6,6 +6,7 @@ function GoogleSignIn() {
     const { authUser, getGoogleUser } = useGoogleSiginHook()
     const handleClick = function (e) {
         e.preventDefault();
+        window.location.href = 'http://localhost:8080/api/auth/google';
         getGoogleUser();
     }
 

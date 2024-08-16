@@ -8,17 +8,18 @@ import session from 'express-session';
 const app = express();
 
 app.use(cors({
-    origin: process.env.CORS_ORIGIN,
-    methods: "GET, PUT, POST, DELETE",
+    origin:process.env.CORS_ORIGIN,
     credentials: true
 }))
 
-app.use(session({
-    secret: process.env.COOKIE_KEY,
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: false } // Set secure to true if using HTTPS
-}));
+app.use(
+    session({
+        secret: process.env.COOKIE_KEY,
+        resave: false,
+        saveUninitialized: false,
+        cookie: { secure: false } // Set to true if using HTTPS
+    })
+);
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -44,7 +45,7 @@ import { getBlogs } from "./controllers/Blogs.js";
 
 app.use("/api/user", userRouter)
 app.use("/api/blog", blogRouter)
-app.use("/api/auth", googleSignInRouter)
+app.use("/api/auth",googleSignInRouter)
 app.route("/").get(getBlogs)
 
 
